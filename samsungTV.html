@@ -1,0 +1,296 @@
+<script type="text/javascript">
+    RED.nodes.registerType('samsungTV',{
+        category: "Media",
+        paletteLabel: "samsungTV",
+        defaults: {
+            ip: {value:"192.168.0.1", required:true},
+            command: {value:""},
+			name: {value:"TV"}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "tv.png",
+        label: function() {
+            return this.name||"samsungTV";
+        },
+        color: "#00FF7F"
+    });
+</script>
+<script type="text/x-red" data-template-name="samsungTV">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    
+    <br/>
+    
+    <div class="form-row">
+        <label for="node-input-ip"><i class="fa fa-tag"></i> IP</label>
+        <input type="text" id="node-input-ip" placeholder="xxx.xxx.xxx.xxx">
+    </div>
+    
+    <br/>
+    
+    <div class="form-row">
+        <label for="node-input-command"><i class="fa fa-tasks"></i> Command</label>
+        <select class="form-control" id="node-input-command">
+			<option>KEY_MENU</option>
+			<option>KEY_UP</option>
+			<option>KEY_DOWN</option>
+			<option>KEY_LEFT</option>
+			<option>KEY_RIGHT</option>
+			<option>KEY_3</option>
+			<option>KEY_VOLUP</option>
+			<option>KEY_4</option>
+			<option>KEY_5</option>
+			<option>KEY_6</option>
+			<option>KEY_VOLDOWN</option>
+			<option>KEY_7</option>
+			<option>KEY_8</option>
+			<option>KEY_9</option>
+			<option>KEY_MUTE</option>
+			<option>KEY_CHDOWN</option>
+			<option>KEY_0</option>
+			<option>KEY_CHUP</option>
+			<option>KEY_PRECH</option>
+			<option>KEY_GREEN</option>
+			<option>KEY_YELLOW</option>
+			<option>KEY_CYAN</option>
+			<option>KEY_ADDDEL</option>
+			<option>KEY_SOURCE</option>
+			<option>KEY_INFO</option>
+			<option>KEY_PIP_ONOFF</option>
+			<option>KEY_PIP_SWAP</option>
+			<option>KEY_PLUS100</option>
+			<option>KEY_CAPTION</option>
+			<option>KEY_PMODE</option>
+			<option>KEY_TTX_MIX</option>
+			<option>KEY_TV</option>
+			<option>KEY_PICTURE_SIZE</option>
+			<option>KEY_AD</option>
+			<option>KEY_PIP_SIZE</option>
+			<option>KEY_MAGIC_CHANNEL</option>
+			<option>KEY_PIP_SCAN</option>
+			<option>KEY_PIP_CHUP</option>
+			<option>KEY_PIP_CHDOWN</option>
+			<option>KEY_DEVICE_CONNECT</option>
+			<option>KEY_HELP</option>
+			<option>KEY_ANTENA</option>
+			<option>KEY_CONVERGENCE</option>
+			<option>KEY_11</option>
+			<option>KEY_12</option>
+			<option>KEY_AUTO_PROGRAM</option>
+			<option>KEY_FACTORY</option>
+			<option>KEY_3SPEED</option>
+			<option>KEY_RSURF</option>
+			<option>KEY_ASPECT</option>
+			<option>KEY_TOPMENU</option>
+			<option>KEY_GAME</option>
+			<option>KEY_QUICK_REPLAY</option>
+			<option>KEY_STILL_PICTURE</option>
+			<option>KEY_DTV</option>
+			<option>KEY_FAVCH</option>
+			<option>KEY_REWIND</option>
+			<option>KEY_STOP</option>
+			<option>KEY_PLAY</option>
+			<option>KEY_FF</option>
+			<option>KEY_REC</option>
+			<option>KEY_PAUSE</option>
+			<option>KEY_TOOLS</option>
+			<option>KEY_INSTANT_REPLAY</option>
+			<option>KEY_LINK</option>
+			<option>KEY_FF_</option>
+			<option>KEY_GUIDE</option>
+			<option>KEY_REWIND_</option>
+			<option>KEY_ANGLE</option>
+			<option>KEY_RESERVED1</option>
+			<option>KEY_ZOOM1</option>
+			<option>KEY_PROGRAM</option>
+			<option>KEY_BOOKMARK</option>
+			<option>KEY_DISC_MENU</option>
+			<option>KEY_PRINT</option>
+			<option>KEY_RETURN</option>
+			<option>KEY_SUB_TITLE</option>
+			<option>KEY_CLEAR</option>
+			<option>KEY_VCHIP</option>
+			<option>KEY_REPEAT</option>
+			<option>KEY_DOOR</option>
+			<option>KEY_OPEN</option>
+			<option>KEY_WHEEL_LEFT</option>
+			<option>KEY_POWER</option>
+			<option>KEY_SLEEP</option>
+			<option>KEY_2</option>
+			<option>KEY_DMA</option>
+			<option>KEY_TURBO</option>
+			<option>KEY_1</option>
+			<option>KEY_FM_RADIO</option>
+			<option>KEY_DVR_MENU</option>
+			<option>KEY_MTS</option>
+			<option>KEY_PCMODE</option>
+			<option>KEY_TTX_SUBFACE</option>
+			<option>KEY_CH_LIST</option>
+			<option>KEY_RED</option>
+			<option>KEY_DNIe</option>
+			<option>KEY_SRS</option>
+			<option>KEY_CONVERT_AUDIO_MAINSUB</option>
+			<option>KEY_MDC</option>
+			<option>KEY_SEFFECT</option>
+			<option>KEY_DVR</option>
+			<option>KEY_DTV_SIGNAL</option>
+			<option>KEY_LIVE</option>
+			<option>KEY_PERPECT_FOCUS</option>
+			<option>KEY_HOME</option>
+			<option>KEY_ESAVING</option>
+			<option>KEY_WHEEL_RIGHT</option>
+			<option>KEY_CONTENTS</option>
+			<option>KEY_VCR_MODE</option>
+			<option>KEY_CATV_MODE</option>
+			<option>KEY_DSS_MODE</option>
+			<option>KEY_TV_MODE</option>
+			<option>KEY_DVD_MODE</option>
+			<option>KEY_STB_MODE</option>
+			<option>KEY_CALLER_ID</option>
+			<option>KEY_SCALE</option>
+			<option>KEY_ZOOM_MOVE</option>
+			<option>KEY_CLOCK_DISPLAY</option>
+			<option>KEY_AV1</option>
+			<option>KEY_SVIDEO1</option>
+			<option>KEY_COMPONENT1</option>
+			<option>KEY_SETUP_CLOCK_TIMER</option>
+			<option>KEY_COMPONENT2</option>
+			<option>KEY_MAGIC_BRIGHT</option>
+			<option>KEY_DVI</option>
+			<option>KEY_HDMI</option>
+			<option>KEY_W_LINK</option>
+			<option>KEY_DTV_LINK</option>
+			<option>KEY_APP_LIST</option>
+			<option>KEY_BACK_MHP</option>
+			<option>KEY_ALT_MHP</option>
+			<option>KEY_DNSe</option>
+			<option>KEY_RSS</option>
+			<option>KEY_ENTERTAINMENT</option>
+			<option>KEY_ID_INPUT</option>
+			<option>KEY_ID_SETUP</option>
+			<option>KEY_ANYNET</option>
+			<option>KEY_POWEROFF</option>
+			<option>KEY_POWERON</option>
+			<option>KEY_ANYVIEW</option>
+			<option>KEY_MS</option>
+			<option>KEY_MORE</option>
+			<option>KEY_PANNEL_POWER</option>
+			<option>KEY_PANNEL_CHUP</option>
+			<option>KEY_PANNEL_CHDOWN</option>
+			<option>KEY_PANNEL_VOLUP</option>
+			<option>KEY_PANNEL_VOLDOW</option>
+			<option>KEY_PANNEL_ENTER</option>
+			<option>KEY_PANNEL_MENU</option>
+			<option>KEY_PANNEL_SOURCE</option>
+			<option>KEY_AV2</option>
+			<option>KEY_AV3</option>
+			<option>KEY_SVIDEO2</option>
+			<option>KEY_SVIDEO3</option>
+			<option>KEY_ZOOM2</option>
+			<option>KEY_PANORAMA</option>
+			<option>KEY_4_3</option>
+			<option>KEY_16_9</option>
+			<option>KEY_DYNAMIC</option>
+			<option>KEY_STANDARD</option>
+			<option>KEY_MOVIE1</option>
+			<option>KEY_CUSTOM</option>
+			<option>KEY_AUTO_ARC_RESET</option>
+			<option>KEY_AUTO_ARC_LNA_ON</option>
+			<option>KEY_AUTO_ARC_LNA_OFF</option>
+			<option>KEY_AUTO_ARC_ANYNET_MODE_OK</option>
+			<option>KEY_AUTO_ARC_ANYNET_AUTO_START</option>
+			<option>KEY_AUTO_FORMAT</option>
+			<option>KEY_DNET</option>
+			<option>KEY_HDMI1</option>
+			<option>KEY_AUTO_ARC_CAPTION_ON</option>
+			<option>KEY_AUTO_ARC_CAPTION_OFF</option>
+			<option>KEY_AUTO_ARC_PIP_DOUBLE</option>
+			<option>KEY_AUTO_ARC_PIP_LARGE</option>
+			<option>KEY_AUTO_ARC_PIP_SMALL</option>
+			<option>KEY_AUTO_ARC_PIP_WIDE</option>
+			<option>KEY_AUTO_ARC_PIP_LEFT_TOP</option>
+			<option>KEY_AUTO_ARC_PIP_RIGHT_TOP</option>
+			<option>KEY_AUTO_ARC_PIP_LEFT_BOTTOM</option>
+			<option>KEY_AUTO_ARC_PIP_RIGHT_BOTTOM</option>
+			<option>KEY_AUTO_ARC_PIP_CH_CHANGE</option>
+			<option>KEY_AUTO_ARC_AUTOCOLOR_SUCCESS</option>
+			<option>KEY_AUTO_ARC_AUTOCOLOR_FAIL</option>
+			<option>KEY_AUTO_ARC_C_FORCE_AGING</option>
+			<option>KEY_AUTO_ARC_USBJACK_INSPECT</option>
+			<option>KEY_AUTO_ARC_JACK_IDENT</option>
+			<option>KEY_NINE_SEPERATE</option>
+			<option>KEY_ZOOM_IN</option>
+			<option>KEY_ZOOM_OUT</option>
+			<option>KEY_MIC</option>
+			<option>KEY_HDMI2</option>
+			<option>KEY_HDMI3</option>
+			<option>KEY_AUTO_ARC_CAPTION_KOR</option>
+			<option>KEY_AUTO_ARC_CAPTION_ENG</option>
+			<option>KEY_AUTO_ARC_PIP_SOURCE_CHANGE</option>
+			<option>KEY_HDMI4</option>
+			<option>KEY_AUTO_ARC_ANTENNA_AIR</option>
+			<option>KEY_AUTO_ARC_ANTENNA_CABLE</option>
+			<option>KEY_AUTO_ARC_ANTENNA_SATELLITE</option>
+			<option>KEY_EXT1</option>
+			<option>KEY_EXT2</option>
+			<option>KEY_EXT3</option>
+			<option>KEY_EXT4</option>
+			<option>KEY_EXT5</option>
+			<option>KEY_EXT6</option>
+			<option>KEY_EXT7</option>
+			<option>KEY_EXT8</option>
+			<option>KEY_EXT9</option>
+			<option>KEY_EXT10</option>
+			<option>KEY_EXT11</option>
+			<option>KEY_EXT12</option>
+			<option>KEY_EXT13</option>
+			<option>KEY_EXT14</option>
+			<option>KEY_EXT15</option>
+			<option>KEY_EXT16</option>
+			<option>KEY_EXT17</option>
+			<option>KEY_EXT18</option>
+			<option>KEY_EXT19</option>
+			<option>KEY_EXT20</option>
+			<option>KEY_EXT21</option>
+			<option>KEY_EXT22</option>
+			<option>KEY_EXT23</option>
+			<option>KEY_EXT24</option>
+			<option>KEY_EXT25</option>
+			<option>KEY_EXT26</option>
+			<option>KEY_EXT27</option>
+			<option>KEY_EXT28</option>
+			<option>KEY_EXT29</option>
+			<option>KEY_EXT30</option>
+			<option>KEY_EXT31</option>
+			<option>KEY_EXT32</option>
+			<option>KEY_EXT33</option>
+			<option>KEY_EXT34</option>
+			<option>KEY_EXT35</option>
+			<option>KEY_EXT36</option>
+			<option>KEY_EXT37</option>
+			<option>KEY_EXT38</option>
+			<option>KEY_EXT39</option>
+			<option>KEY_EXT40</option>
+			<option>KEY_EXT41</option>
+        </select>
+    </div>
+</script>
+<script type="text/x-red" data-help-name="samsungTV">
+   <p>Use this to <b>send</b> command to a samsungTV</p>
+   <p>using the Remote client for Samsung SmartTV : <a href="https://www.npmjs.com/package/samsung-remote">samsung-remote</a></p>
+   <p>If <b>command</b> is not defined, <b>msg.command</b> id used.</p>
+   <p>Outputs an object called <b>msg</b> containing <b>msg.success</b> and
+   <b>msg.err</b>. msg.err is empty if msg.success is true.</p>
+   <p>Exemple :
+   <code> <p>[{"id":"76bd9c44.894264","type":"mqtt-broker","z":"","broker":"localhost","port":"1883","clientid":"","usetls":false,"verifyservercert":true,"compatmode":true,"keepalive":"15","cleansession":true,"willTopic":"","willQos":"0","willRetain":"false","willPayload":"","birthTopic":"","birthQos":"0","birthRetain":"false","birthPayload":""},</br>
+   {"id":"623439a2.fc1808","type":"samsungTV","z":"f8903f97.11609","ip":"192.168.10.127","command":"","name":"TV","x":623,"y":102,"wires":[["be2d9fa2.8069e"]]},</br>
+   {"id":"fa2a59e8.476c08","type":"mqtt in","z":"f8903f97.11609","name":"MYTOPIC/TV","topic":"MYTOPIC/TV","broker":"76bd9c44.894264","x":160,"y":100,"wires":[["c66ba97e.42c118"]]},</br>
+   {"id":"c66ba97e.42c118","type":"change","z":"f8903f97.11609","name":"","rules":[{"t":"set","p":"command","pt":"msg","to":"payload","tot":"msg"}],"action":"","property":"","from":"","to":"","reg":false,"x":422,"y":101,"wires":[["623439a2.fc1808"]]},</br>
+   {"id":"6fed39e9.ea8438","type":"debug","z":"f8903f97.11609","name":"","active":true,"console":"false","complete":"err","x":963,"y":104,"wires":[]},</br>
+   {"id":"be2d9fa2.8069e","type":"switch","z":"f8903f97.11609","name":"","property":"success","propertyType":"msg","rules":[{"t":"false"}],"checkall":"true","outputs":1,"x":793,"y":102,"wires":[["6fed39e9.ea8438"]]}]</p>
+   </code></p>
+   <p>Tested on UE40EU6030WXYF TV model</p>
+</script>
